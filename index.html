@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>🎂 Happy Birthday Sneha! — Polaroid Surprise (Deluxe)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#071033;
+      --bg2:#05081c;
+      --accent1:#ff7ac4;
+      --accent2:#7b5cff;
+      --accent3:#ffd86f;
+      --accent4:#3be8b0;
+      --glass: rgba(255,255,255,0.06);
+      --text:#ffffff;
+      --text-secondary:rgba(240,240,255,0.88);
+      --radius-lg:20px;
+      --transition-fast:all .28s cubic-bezier(.2,.9,.3,1)
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;overflow-x:hidden}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#03102a 0%, #06102f 50%, #03102a 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      position:relative;
+      min-height:100vh;
+      overflow-x:hidden;
+      background-attachment:fixed;
+    }
+
+    /* --- Video background --- */
+    .video-background{position:fixed;inset:0;z-index:-3;overflow:hidden;opacity:0.42}
+    .video-background video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;object-fit:cover;filter:brightness(.98) saturate(1.05)}
+    .video-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(2,6,20,0.35), rgba(0,0,0,0.55));z-index:-2}
+
+    /* --- Splash Start Screen --- */
+    #startScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(87, 182, 214, 0.92), rgba(123,92,255,0.88));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      animation: startFadeIn .6s ease;
+      text-align:center;
+    }
+    .start-inner{max-width:92%;padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));backdrop-filter: blur(6px);box-shadow:0 30px 80px rgba(2,6,30,0.45)}
+    .start-title{font-family:'Roboto Slab',serif;font-size:34px;color:#fff;margin-bottom:14px;text-shadow:0 6px 22px rgba(0,0,0,0.35)}
+    .start-sub{color:rgba(255,255,255,0.92);margin-bottom:20px}
+    .start-btn{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      border:0;padding:14px 28px;border-radius:999px;color:#fff;font-weight:700;font-size:18px;cursor:pointer;box-shadow:0 12px 40px rgba(123,92,255,0.18);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .start-btn:active{transform:scale(.98)}
+    @keyframes startFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    @keyframes fadeOut { to { opacity: 0; visibility: hidden; transform: scale(.98) } }
+
+    /* --- Container / Card --- */
+    .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px 18px;z-index:2}
+    .card{
+      width:min(1150px,96%);
+      border-radius:var(--radius-lg);
+      padding:28px;
+      background:linear-gradient(180deg, rgba(167, 168, 180, 0.02), rgba(166, 65, 65, 0.01));
+      backdrop-filter:blur(10px);
+      box-shadow:0 30px 80px rgba(2,6,20,0.6);
+      border:1px solid rgba(255,255,255,0.04);
+      position:relative;
+      overflow:visible;
+    }
+
+    /* glitter border using pseudo element */
+    .card::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:2px;background:linear-gradient(120deg,var(--accent1),var(--accent3),var(--accent2));background-size:300% 300%;z-index:-1;filter:blur(12px);opacity:.85;animation:glitterMove 7s linear infinite}
+    @keyframes glitterMove{0%{background-position:0% 50%}50%{background-position:50% 50%}100%{background-position:100% 50%}}
+
+    .header{display:flex;align-items:center;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+    .avatar-polaroid{width:120px;padding:10px 10px 30px;background:linear-gradient(145deg,#fff,#f9f9f9);border-radius:12px;display:flex;flex-direction:column;align-items:center;box-shadow:0 18px 36px rgba(2,6,30,0.65);transform:rotate(-8deg);border-bottom:45px solid #fff;position:relative;z-index:2;cursor:pointer;transition:transform .45s ease, box-shadow .45s ease; transform-style:preserve-3d;}
+    .avatar-polaroid img{width:140px;height:140px;object-fit:cover;border-radius:8px;display:block}
+    .avatar-caption{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:13px;color:#222;font-weight:700}
+
+    h1{font-family:'Roboto Slab',serif;font-size:36px;margin-bottom:6px;background:linear-gradient(90deg,var(--accent1),var(--accent3),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.05}
+    .subtitle{color:var(--text-secondary);font-size:14px;max-width:680px}
+
+    .action-buttons{display:flex;gap:10px;margin-left:auto}
+    .btn{padding:10px 14px;border-radius:999px;border:0;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:10px;transition:var(--transition-fast)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff}
+    .btn-secondary{background:rgba(255,255,255,0.07);color:var(--text);border:1px solid rgba(255,255,255,0.05)}
+
+    .content-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:22px;margin-top:12px}
+    @media (max-width:1024px){.content-grid{grid-template-columns:1fr}}
+
+    .hero-section{position:relative;border-radius:var(--radius-lg);height:480px;display:flex;align-items:center;justify-content:center}
+    .hero-polaroid{width:360px;padding:18px 18px 52px;background:linear-gradient(145deg,#fff,#f7f7f7);border-radius:12px;box-shadow:0 30px 70px rgba(2,6,30,0.75);transform:rotate(5deg);border-bottom:55px solid #fff;position:relative;z-index:2;transition:transform .45s ease, box-shadow .45s ease; transform-style:preserve-3d}
+    .hero-polaroid img{width:100%;height:340px;object-fit:cover;border-radius:10px;display:block}
+    .polaroid-caption{position:absolute;bottom:12px;left:12px;font-weight:700;color:#222}
+
+    .tabs{display:flex;gap:6px;margin-bottom:14px;background:rgba(255,255,255,0.04);border-radius:12px;padding:6px;border:1px solid rgba(255,255,255,0.04)}
+    .tab{flex:1;padding:12px 14px;text-align:center;border-radius:8px;cursor:pointer;color:var(--text-secondary);font-weight:600}
+    .tab.active{background:linear-gradient(90deg,rgba(123,92,255,0.18),rgba(255,122,196,0.16));color:var(--text)}
+
+    .typewriter-container{min-height:180px;background:rgba(255,255,255,0.03);border-radius:14px;border:1px solid rgba(255,255,255,0.04);padding:18px;margin-bottom:12px;backdrop-filter:blur(6px)}
+    #typewriter{white-space:pre-line;font-size:15px;color:var(--text);line-height:1.7;min-height:120px}
+    .typewriter-cursor{display:inline-block;width:3px;height:20px;background:var(--accent3);margin-left:6px;animation:blink 1s infinite;vertical-align:middle}
+    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px}
+    .thumb-polaroid{padding:12px 12px 36px;background:linear-gradient(145deg,#fff,#f7f7f7);border-radius:10px;box-shadow:0 15px 35px rgba(0,0,0,0.35);transform:rotate(var(--rotation,-6deg));cursor:pointer;position:relative;transition:transform .45s ease, box-shadow .45s ease; transform-style:preserve-3d}
+    .thumb-polaroid img{width:100%;height:96px;object-fit:cover;border-radius:8px}
+    .thumb-caption{position:absolute;bottom:8px;left:10px;font-weight:700;color:#222;font-size:13px}
+
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(2,2,12,0.9);display:none;align-items:center;justify-content:center;z-index:100;backdrop-filter:blur(12px);opacity:0;transition:opacity .28s}
+    .lightbox.visible{display:flex;opacity:1}
+    .lightbox img{max-width:90vw;max-height:80vh;border-radius:12px;box-shadow:0 40px 120px rgba(0,0,0,0.8)}
+    .lightbox-close{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;background:var(--accent1);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+    /* canvas fireworks + confetti root + toast */
+    canvas#fireworks{position:fixed;inset:0;pointer-events:none;z-index:49}
+    .confetti-container{position:fixed;inset:0;pointer-events:none;z-index:50}
+    .toast{position:fixed;right:26px;bottom:26px;padding:12px 16px;background:rgba(25,30,65,0.95);border-radius:12px;border-left:4px solid var(--accent1);display:flex;align-items:center;gap:12px;transform:translateX(120%);opacity:0;transition:transform .35s,opacity .35s;z-index:1001;max-width:360px}
+    .toast.show{transform:translateX(0);opacity:1}
+    .toast .toast-close{background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer}
+
+    /* fireworks controls */
+    .video-control{position:fixed;left:20px;bottom:24px;z-index:60;display:flex;gap:8px}
+    .video-control-btn{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(25,30,65,0.92);border:1px solid rgba(255,255,255,0.06);cursor:pointer;color:var(--text)}
+
+    /* hearts trail */
+    .heart{position:fixed;pointer-events:none;font-size:18px;opacity:1;animation:heartFloat 1.6s ease-out forwards;z-index:99999}
+    @keyframes heartFloat{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-90px) scale(1.9);opacity:0}}
+
+    /* emoji particles */
+    .emoji{position:fixed;pointer-events:none;font-size:22px;opacity:1;animation:emojiPop 1.2s ease-out forwards;z-index:99999}
+    @keyframes emojiPop{0%{transform:scale(.6) translateY(0);opacity:1}100%{transform:scale(1.8) translateY(-70px);opacity:0}}
+
+    /* snowflake */
+    .snowflake{position:fixed;top:-10px;color:rgba(255,255,255,0.75);font-size:12px;pointer-events:none;animation:snowfall linear infinite;z-index:-1}
+    @keyframes snowfall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+
+    /* responsive tweaks */
+    @media (max-width:768px){
+      h1{font-size:28px}
+      .hero-polaroid{width:320px}
+      .card{padding:18px}
+      .start-title{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <!-- VIDEO BG -->
+  <div class="video-background" aria-hidden="true">
+    <video id="bgVideo" muted loop playsinline preload="auto">
+      <source src="./asstes/Happy Birthday Song!!!.mp4" type="video/mp4">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-confetti-falling-on-dark-background-39687-large.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="startScreen" role="dialog" aria-modal="true" aria-label="Start celebration">
+    <div class="start-inner" role="document">
+      <h1 class="start-title">🎂 Happy Birthday, Khanishkaradhya! 🎉</h1>
+      <p class="start-sub">Tap to begin the surprise — music, fireworks, confetti and memories await.</p>
+      <button id="startBtn" class="start-btn" aria-label="Begin celebration">Tap to Begin 🎁</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container" id="mainContainer" role="main" aria-hidden="true">
+    <div class="card" role="region" aria-label="Birthday card">
+      <div class="header">
+        <div class="avatar-polaroid" id="avatarPolaroid" tabindex="0" aria-label="Birthday avatar">
+          <img id="avatarImg" src="./asstes/birtdatstar.jpg" alt="Birthday avatar">
+          <div class="avatar-caption">The Birthday Star! ✨</div>
+        </div>
+
+        <div class="title-section">
+          <h1>Happy Birthday, <span id="birthdayName">Khanishkaradhya</span>! 🎉</h1>
+          <p class="subtitle" id="subtitle">An interactive polaroid celebration with video backdrop — open the surprise for messages & fireworks.</p>
+
+          <div class="stats" aria-hidden="true" style="display:flex;gap:10px;margin-top:10px">
+            <div class="stat-item" style="text-align:center"><div class="stat-value" id="photoCount">0</div><div class="stat-label" style="font-size:12px;color:var(--text-secondary)">Photos</div></div>
+            <div class="stat-item" style="text-align:center"><div class="stat-value" id="memoryCount">0</div><div class="stat-label" style="font-size:12px;color:var(--text-secondary)">Memories</div></div>
+            <div class="stat-item" style="text-align:center"><div class="stat-value" id="celebrationCount">0</div><div class="stat-label" style="font-size:12px;color:var(--text-secondary)">Celebrations</div></div>
+          </div>
+        </div>
+
+        <div class="action-buttons" role="toolbar" aria-label="Actions">
+          <button id="openBtn" class="btn btn-primary" aria-pressed="false"><i class="fas fa-gift"></i> Open Surprise</button>
+          <button id="musicBtn" class="btn btn-secondary" aria-pressed="false"><i class="fas fa-music"></i> <span id="musicText">Play Music</span></button>
+          <button id="helpBtn" class="btn btn-secondary" title="How to use"><i class="fas fa-question-circle"></i></button>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="hero-section">
+          <div class="hero-polaroid" id="heroPolaroid" tabindex="0" aria-label="Hero polaroid">
+            <div class="polaroid-sticker sticker-1" style="position:absolute;top:-18px;left:-18px;background:var(--accent1);color:#fff;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-weight:700">🎂</div>
+            <img id="heroImg" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400&auto=format&fit=crop" alt="Birthday celebration">
+            <div class="polaroid-caption">Make a Wish & Blow the Candles! 🕯️</div>
+            <div class="polaroid-sticker sticker-2" style="position:absolute;bottom:-18px;right:-18px;background:var(--accent4);color:#222;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-weight:700">🎉</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="tabs" role="tablist" aria-label="Sections">
+            <div class="tab active" data-tab="message" role="tab" tabindex="0">Personal Message</div>
+            <div class="tab" data-tab="gallery" role="tab" tabindex="0">Photo Gallery</div>
+            <div class="tab" data-tab="wishes" role="tab" tabindex="0">Birthday Wishes</div>
+          </div>
+
+          <div class="tab-content active" id="message-tab" role="tabpanel">
+            <div class="badges" aria-hidden="true" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+              <div class="badge" style="padding:8px 12px;border-radius:40px;background:linear-gradient(90deg,rgba(255,122,196,0.18),rgba(123,92,255,0.18));display:inline-flex;align-items:center;gap:8px"><i class="fas fa-heart"></i> Made with Love</div>
+              <div class="badge" style="padding:8px 12px;border-radius:40px;display:inline-flex;align-items:center;gap:8px"><i class="fas fa-camera"></i> Polaroid Memories</div>
+              <div class="badge" style="padding:8px 12px;border-radius:40px;display:inline-flex;align-items:center;gap:8px"><i class="fas fa-star"></i> Special Day</div>
+            </div>
+
+            <div class="typewriter-container" aria-live="polite">
+              <div id="typewriter"></div><span class="typewriter-cursor" id="typewriterCursor" aria-hidden="true"></span>
+            </div>
+
+            <div class="controls" style="display:flex;gap:10px">
+              <button id="confettiBtn" class="btn btn-primary"><i class="fas fa-birthday-cake"></i> Confetti</button>
+              <button id="fwBtn" class="btn btn-primary"><i class="fas fa-fire"></i> Fireworks</button>
+              <button id="loveBtn" class="btn btn-secondary"><i class="fas fa-heart"></i> Send Love</button>
+            </div>
+          </div>
+
+          <div class="tab-content" id="gallery-tab" role="tabpanel" aria-hidden="true" style="display:none">
+            <div class="gallery-section">
+              <div class="gallery-title" style="margin-bottom:10px;color:var(--accent3);font-weight:700"><i class="fas fa-images" style="margin-right:8px;color:var(--accent1)"></i> Memory Lane</div>
+              <div class="gallery" id="gallery" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="wishes-tab" role="tabpanel" aria-hidden="true" style="display:none">
+            <div class="typewriter-container">
+              <h3 style="margin-bottom:12px;color:var(--accent3)">Birthday Wishes for You!</h3>
+              <ul id="wishesList" style="padding-left:20px;line-height:1.7;color:var(--text-secondary)">
+                <li>May your day be filled with joy and laughter!</li>
+                <li>Wishing you success in all your endeavors!</li>
+                <li>May all your dreams and wishes come true!</li>
+                <li>Here's to another year of amazing adventures!</li>
+                <li>May you be surrounded by love and happiness!</li>
+                <li>Cheers to health, wealth, and happiness!</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="confettiRoot" class="confetti-container" aria-hidden="true"></div>
+  <canvas id="fireworks" aria-hidden="true"></canvas>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image view">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close image">&times;</button>
+      <img id="lightboxImg" src="" alt="">
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><i class="fas fa-bell"></i><div class="toast-content"><div class="toast-title" id="toastTitle">Notification</div><div class="toast-message" id="toastMessage">Message goes here</div></div><button class="toast-close" id="toastClose" aria-label="Close notification">&times;</button></div>
+
+  <!-- audio: use local file or keep src as needed -->
+  <audio id="bgAudio" loop preload="auto" src="./asstes/happy-birthday-357371.mp3"></audio>
+ 
+
+  <script>
+    /*
+      Deluxe Full Page — All features integrated
+      Defaults: Birthday name Sneha, From Narendra (edit CONFIG below)
+    */
+
+    /* ========== CONFIG ========== */
+    const CONFIG = {
+      birthdayName: 'Khanishkaradhya',
+      fromName: 'mamayya',
+      avatarUrl: './asstes/birtdatstar.jpg',
+      heroUrl: './asstes/hero.jpeg',
+      galleryImages: [
+        { url: './asstes/1st.jpeg', caption: 'Beautiful Memories ✨' },
+        { url: './asstes/2edd.jpeg', caption: 'Happy Times Together 😊' },
+        { url: './asstes/3d.jpeg', caption: 'Celebration Mode ON! 🎉' },
+        { url: './asstes/4thh.jpeg', caption: 'Cake & Candles 🎂' },
+        { url: './asstes/5th.jpeg', caption: 'Party Time! 🥳' },
+        { url: './asstes/mainpic.jpeg', caption: 'Special Moments 💖' }
+      ],
+      message: `You bring happiness wherever you go.\n\nWishing you a day filled with love and laughter.\n\nWith love,\nmamayya`
+    };
+
+    /* ========== STATE & DOM ========== */
+    const state = { isInitialized:false, celebrationCount:0, isMusicPlaying:false, isTypewriterActive:false, currentTab:'message', toastTimeout:null, isVideoPlaying:false };
+    const dom = {
+      startScreen: document.getElementById('startScreen'),
+      startBtn: document.getElementById('startBtn'),
+      mainContainer: document.getElementById('mainContainer'),
+      birthdayName: document.getElementById('birthdayName'),
+      avatarImg: document.getElementById('avatarImg'),
+      avatarPolaroid: document.getElementById('avatarPolaroid'),
+      heroImg: document.getElementById('heroImg'),
+      typewriter: document.getElementById('typewriter'),
+      typewriterCursor: document.getElementById('typewriterCursor'),
+      gallery: document.getElementById('gallery'),
+      photoCount: document.getElementById('photoCount'),
+      memoryCount: document.getElementById('memoryCount'),
+      celebrationCount: document.getElementById('celebrationCount'),
+      openBtn: document.getElementById('openBtn'),
+      musicBtn: document.getElementById('musicBtn'),
+      musicText: document.getElementById('musicText'),
+      helpBtn: document.getElementById('helpBtn'),
+      confettiBtn: document.getElementById('confettiBtn'),
+      fwBtn: document.getElementById('fwBtn'),
+      loveBtn: document.getElementById('loveBtn'),
+      tabs: document.querySelectorAll('.tab'),
+      tabContents: document.querySelectorAll('.tab-content'),
+      lightbox: document.getElementById('lightbox'),
+      lightboxImg: document.getElementById('lightboxImg'),
+      lightboxClose: document.getElementById('lightboxClose'),
+      toast: document.getElementById('toast'),
+      toastTitle: document.getElementById('toastTitle'),
+      toastMessage: document.getElementById('toastMessage'),
+      toastClose: document.getElementById('toastClose'),
+      bgAudio: document.getElementById('bgAudio'),
+      confettiSound: document.getElementById('confettiSound'),
+      fireworkSound: document.getElementById('fireworkSound'),
+      sparkles: document.getElementById('sparkles'),
+      balloonsContainer: document.getElementById('balloonsContainer'),
+      bgVideo: document.getElementById('bgVideo'),
+      fireworksCanvas: document.getElementById('fireworks'),
+      galleryContainer: document.getElementById('gallery'),
+      confettiRoot: document.getElementById('confettiRoot')
+    };
+
+    /* ========== BOOT ========== */
+    function init() {
+      dom.birthdayName.textContent = CONFIG.birthdayName;
+      dom.avatarImg.src = CONFIG.avatarUrl;
+      dom.heroImg.src = CONFIG.heroUrl;
+      dom.photoCount.textContent = CONFIG.galleryImages.length;
+      dom.memoryCount.textContent = CONFIG.galleryImages.length + 2;
+
+      initGallery();
+      initSparkles();
+      initBalloons();
+      initTabs();
+      initFireworks();
+      bindEvents();
+
+      // mark ready but keep hidden until start tapped
+      dom.mainContainer.setAttribute('aria-hidden','true');
+      dom.mainContainer.style.opacity = '0';
+      state.isInitialized = true;
+    }
+
+    /* ========== GALLERY ========== */
+    function initGallery() {
+      dom.gallery.innerHTML = '';
+      CONFIG.galleryImages.forEach((image, index) => {
+        const pol = document.createElement('div');
+        pol.className = 'thumb-polaroid';
+        pol.style.setProperty('--rotation', `${(index % 3) * 4 - 6}deg`);
+        pol.tabIndex = 0;
+        const img = document.createElement('img'); img.src = image.url; img.alt = `Memory ${index + 1}`;
+        const cap = document.createElement('div'); cap.className = 'thumb-caption'; cap.textContent = image.caption;
+        pol.appendChild(img); pol.appendChild(cap);
+        pol.addEventListener('click', () => openLightbox(image.url, image.caption));
+        pol.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(image.url, image.caption); } });
+        dom.gallery.appendChild(pol);
+      });
+    }
+
+    /* ========== SPARKLES (background) ========== */
+    function initSparkles(){
+      // simple sparkle container using snowflake generator below (keeps small)
+      // nothing to init here; snowflakes generate in global interval
+    }
+
+    /* ========== BALLOONS ========== */
+    function initBalloons(){
+      // created on demand if needed (kept simple)
+    }
+
+    /* ========== TABS ========== */
+    function initTabs(){
+      dom.tabs.forEach(tab=>{
+        tab.addEventListener('click',()=>activateTab(tab));
+        tab.addEventListener('keydown',(e)=>{ if(e.key === 'Enter' || e.key === ' ') activateTab(tab); });
+      });
+    }
+    function activateTab(tab){
+      const id = tab.getAttribute('data-tab');
+      dom.tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(c=>{
+        if(c.id === id + '-tab'){ c.style.display = ''; c.removeAttribute('aria-hidden'); }
+        else { c.style.display = 'none'; c.setAttribute('aria-hidden','true'); }
+      });
+      state.currentTab = id;
+      if(id === 'gallery') showToast('Gallery', 'Click any polaroid to view it larger', 'info');
+    }
+
+    /* ========== TYPEWRITER ========== */
+    function typewriter(el, text, speed=34, onComplete=null){
+      if(state.isTypewriterActive) return;
+      state.isTypewriterActive=true;
+      el.textContent='';
+      dom.typewriterCursor.style.display='inline-block';
+      let i=0;
+      function step(){
+        if(i<=text.length){
+          const chunk=text.slice(0,i);
+          el.innerHTML = chunk.replace(/\n/g,'<br>');
+          i++;
+          setTimeout(step, speed);
+        } else {
+          state.isTypewriterActive=false;
+          dom.typewriterCursor.style.display='inline-block';
+          if(onComplete) onComplete();
+        }
+      }
+      step();
+    }
+
+    /* ========== LIGHTBOX ========== */
+    function openLightbox(url, caption=''){ dom.lightboxImg.src=url; dom.lightboxImg.alt=caption; dom.lightbox.classList.add('visible'); dom.lightbox.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function closeLightbox(){ dom.lightbox.classList.remove('visible'); dom.lightbox.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+
+    /* ========== TOASTS ========== */
+    function showToast(title, message, type='info'){
+      if(state.toastTimeout) clearTimeout(state.toastTimeout);
+      dom.toastTitle.textContent = title; dom.toastMessage.textContent = message;
+      const icon = dom.toast.querySelector('i');
+      if(type==='success') icon.className='fas fa-check-circle';
+      else if(type==='error') icon.className='fas fa-exclamation-circle';
+      else if(type==='warning') icon.className='fas fa-exclamation-triangle';
+      else icon.className='fas fa-bell';
+      dom.toast.classList.add('show');
+      state.toastTimeout = setTimeout(()=>dom.toast.classList.remove('show'), 5000);
+    }
+
+    /* ========== CELEBRATION COUNT ========== */
+    function updateCelebrationCount(increment=1){
+      state.celebrationCount += increment;
+      document.getElementById('celebrationCount').textContent = state.celebrationCount;
+      document.getElementById('celebrationCount').style.transform = 'scale(1.18)';
+      setTimeout(()=>document.getElementById('celebrationCount').style.transform='scale(1)', 300);
+    }
+
+    /* ========== CONFETTI ========== */
+    function showConfetti(particleCount=100){
+      try { dom.confettiSound.currentTime = 0; dom.confettiSound.play().catch(()=>{}); } catch(e){}
+      updateCelebrationCount();
+      const root = dom.confettiRoot;
+      const colors = ['#ff7ac4','#ffd86f','#7b5cff','#3be8b0','#fff'];
+      const container = document.createElement('div'); container.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:1000';
+      root.appendChild(container);
+      for(let i=0;i<particleCount;i++){
+        const el=document.createElement('div');
+        const w=8+Math.random()*16; el.style.width = w+'px'; el.style.height=(w*1.2)+'px';
+        el.style.background = colors[Math.floor(Math.random()*colors.length)];
+        el.style.position='absolute'; el.style.left = Math.random()*100 + '%'; el.style.top = '-6vh';
+        el.style.borderRadius = Math.random()>.5 ? '50%' : '4px'; el.style.opacity='0.95'; el.style.transform = `rotate(${Math.random()*360}deg)`; el.style.boxShadow='0 4px 8px rgba(0,0,0,0.18)';
+        container.appendChild(el);
+        setTimeout(()=>{ const dur = 2 + Math.random()*1.6; el.style.transition = `transform ${dur}s cubic-bezier(.2,.8,.2,1), top ${dur}s linear, opacity .5s`; el.style.top = (110 + Math.random()*40)+'vh'; el.style.transform = `translateX(${(Math.random()*220-110)}px) rotate(${Math.random()*1440}deg)`; },30);
+        setTimeout(()=>el.style.opacity='0',3200);
+        setTimeout(()=>el.remove(),4200);
+      }
+      setTimeout(()=>container.remove(),4600);
+      showToast('Confetti!','Celebrating with colorful confetti!','success');
+    }
+
+    /* ========== FIREWORKS (canvas) ========== */
+    let fireworksCtx = null;
+    let fireworksWidth = 0;
+    let fireworksHeight = 0;
+    let fireworksParticles = [];
+    let fireworksRaf = null;
+
+    function initFireworks() {
+      const canvas = dom.fireworksCanvas;
+      if (!canvas) return;
+      fireworksCtx = canvas.getContext('2d');
+
+      function resize() {
+        fireworksWidth = canvas.width = window.innerWidth;
+        fireworksHeight = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function loop() {
+        fireworksCtx.clearRect(0,0,fireworksWidth,fireworksHeight);
+        for (let i = fireworksParticles.length - 1; i >= 0; i--) {
+          const p = fireworksParticles[i];
+          p.vx *= p.friction;
+          p.vy *= p.friction;
+          p.vy += p.gravity;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= p.decay;
+
+          if (p.life > 0) {
+            fireworksCtx.globalAlpha = Math.max(0, Math.min(1, p.life));
+            fireworksCtx.beginPath();
+            fireworksCtx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+            fireworksCtx.fillStyle = p.color;
+            fireworksCtx.fill();
+
+            fireworksCtx.beginPath();
+            fireworksCtx.arc(p.x, p.y, p.size * 1.6, 0, Math.PI*2);
+            fireworksCtx.globalAlpha = p.life * 0.22;
+            fireworksCtx.fillStyle = p.color;
+            fireworksCtx.fill();
+          } else {
+            fireworksParticles.splice(i, 1);
+          }
+        }
+        fireworksCtx.globalAlpha = 1;
+        fireworksRaf = requestAnimationFrame(loop);
+      }
+      if (!fireworksRaf) loop();
+    }
+
+    function createFirework(x, y, color = null, options = {}) {
+      try { dom.fireworkSound.currentTime = 0; dom.fireworkSound.play().catch(()=>{}); } catch(e){}
+      updateCelebrationCount();
+      const colors = color ? [color] : ['#ff7ac4','#ffd86f','#7b5cff','#3be8b0','#ff6b6b'];
+      const explosionColor = colors[Math.floor(Math.random()*colors.length)];
+
+      const particleCount = options.count || (70 + Math.floor(Math.random()*80));
+      for (let i = 0; i < particleCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 10;
+        const vx = Math.cos(angle) * speed;
+        const vy = Math.sin(angle) * speed;
+        const life = 1;
+        const decay = 0.012 + Math.random() * 0.02;
+        const size = 2 + Math.random() * 4;
+        fireworksParticles.push({ x, y, vx, vy, color: explosionColor, life, decay, size, gravity: 0.04 + Math.random()*0.03, friction: 0.985 + Math.random()*0.01 });
+      }
+
+      const ringCount = 20 + Math.floor(Math.random()*26);
+      for (let r = 0; r < ringCount; r++) {
+        const angle = (r / ringCount) * Math.PI * 2;
+        const speed = 4 + Math.random()*6;
+        fireworksParticles.push({
+          x, y,
+          vx: Math.cos(angle)*speed,
+          vy: Math.sin(angle)*speed,
+          color: explosionColor,
+          life: 0.9,
+          decay: 0.018 + Math.random()*0.01,
+          size: 1.6 + Math.random()*2,
+          gravity: 0.02,
+          friction: 0.99
+        });
+      }
+
+      const sparkCount = 40 + Math.floor(Math.random()*50);
+      for (let s=0;s<sparkCount;s++){
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 1 + Math.random()*6;
+        fireworksParticles.push({
+          x: x + (Math.random()-0.5)*6,
+          y: y + (Math.random()-0.5)*6,
+          vx: Math.cos(angle)*speed,
+          vy: Math.sin(angle)*speed,
+          color: explosionColor,
+          life: 0.7 + Math.random()*0.4,
+          decay: 0.02 + Math.random()*0.03,
+          size: 1 + Math.random()*2,
+          gravity: 0.04,
+          friction: 0.975
+        });
+      }
+    }
+
+    function launchFireworks(count = 5) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const x = 120 + Math.random() * (fireworksWidth - 240);
+          const y = 80 + Math.random() * (fireworksHeight / 2);
+          createFirework(x, y);
+        }, i * 240);
+      }
+    }
+
+    /* ========== VIDEO CONTROLS ========== */
+    const alternateVideoSrc = ".Happy Birtday Video.mp4"; // replace with actual alternate video URL';
+    let usingAlternate = false;
+    function toggleVideoBackground() {
+      if (!dom.bgVideo) return;
+      if (state.isVideoPlaying) {
+        dom.bgVideo.pause();
+        state.isVideoPlaying = false;
+        showToast('Video Paused','Background video paused','info');
+      } else {
+        dom.bgVideo.play().catch(()=>{});
+        state.isVideoPlaying = true;
+        showToast('Video Playing','Background video resumed','info');
+      }
+    }
+    function switchVideo() {
+      if (!dom.bgVideo) return;
+      if (!usingAlternate) {
+        dom.bgVideo.pause();
+        dom.bgVideo.src = alternateVideoSrc;
+        dom.bgVideo.load();
+        dom.bgVideo.play().catch(()=>{});
+        usingAlternate = true;
+        showToast('Background switched','Using alternate video','info');
+      } else {
+        dom.bgVideo.pause();
+        dom.bgVideo.src = '';
+        dom.bgVideo.load();
+        dom.bgVideo.play().catch(()=>{});
+        usingAlternate = false;
+        showToast('Background switched','Restored primary video','info');
+      }
+    }
+
+    /* ========== EVENTS & BINDING ========== */
+    function bindEvents() {
+      // START BUTTON: required to allow audio play on mobile/desktop
+      dom.startBtn.addEventListener('click', () => {
+        // fade out start screen
+        dom.startScreen.style.animation = "fadeOut 0.8s forwards";
+        // reveal main content after small delay
+        setTimeout(()=>{
+          dom.startScreen.style.display='none';
+          dom.mainContainer.setAttribute('aria-hidden','false');
+          dom.mainContainer.style.transition = 'opacity .6s ease, transform .6s ease';
+          dom.mainContainer.style.opacity = '1';
+          dom.mainContainer.style.transform = 'translateY(0)';
+        },820);
+
+        // Start background video & audio
+        dom.bgVideo.play().catch(()=>{});
+        state.isVideoPlaying = true;
+        try { dom.bgAudio.currentTime = 0; dom.bgAudio.play().catch(()=>{}); } catch(e){}
+
+        // immediate visual celebration
+        setTimeout(()=> showConfetti(140), 380);
+        setTimeout(()=> launchFireworks(7), 1000);
+        setTimeout(()=> typewriter(dom.typewriter, CONFIG.message, 34), 1500);
+        setTimeout(()=> showToast('Welcome!', `Happy Birthday ${CONFIG.birthdayName}! Click Surprise to open more.`,'success'), 2000);
+        // hearts burst once
+        for(let i=0;i<8;i++){ setTimeout(()=> spawnHeart(window.innerWidth/2 + (Math.random()*240-120), window.innerHeight/2 + (Math.random()*120-60)), i*80); }
+      });
+
+      // Open Surprise button
+      dom.openBtn.addEventListener('click', () => {
+        if (state.isTypewriterActive) return;
+        dom.openBtn.disabled = true; dom.openBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening...';
+        setTimeout(() => {
+          typewriter(dom.typewriter, CONFIG.message, 36, () => {
+            showConfetti(180);
+            setTimeout(()=>launchFireworks(7), 600);
+            setTimeout(()=>showToast('Surprise!','Happy Birthday! Enjoy your special day! 🎂','success'), 1200);
+            setTimeout(()=>{ dom.openBtn.disabled=false; dom.openBtn.innerHTML = '<i class="fas fa-gift"></i> Surprise Opened!'; }, 2600);
+          });
+        }, 420);
+      });
+
+      // music toggle
+      dom.musicBtn.addEventListener('click', () => {
+        if (state.isMusicPlaying) { dom.bgAudio.pause(); dom.musicText.textContent='Play Music'; dom.musicBtn.innerHTML='<i class="fas fa-music"></i> Play Music'; }
+        else { dom.bgAudio.play().catch(()=>{ showToast('Audio Error','Could not play audio. Click again to try.', 'error'); }); dom.musicText.textContent='Pause Music'; dom.musicBtn.innerHTML='<i class="fas fa-pause"></i> Pause Music'; }
+        state.isMusicPlaying = !state.isMusicPlaying;
+      });
+
+      dom.helpBtn.addEventListener('click', ()=> showToast('How to Use','Tap the start screen to begin • Click polaroids to enlarge • Use buttons for effects','info'));
+
+      dom.confettiBtn.addEventListener('click', ()=> showConfetti(110));
+      dom.fwBtn.addEventListener('click', ()=> launchFireworks(4));
+      dom.loveBtn.addEventListener('click', ()=> {
+        showToast('Love Sent!', `Hearts and hugs sent to ${CONFIG.birthdayName}! 💖`, 'success');
+        updateCelebrationCount(1);
+        const heart = document.createElement('div'); heart.innerHTML = '❤️'; heart.style.position='fixed'; heart.style.left='50%'; heart.style.top='50%'; heart.style.transform='translate(-50%,-50%)'; heart.style.fontSize='36px'; heart.style.zIndex='2000'; heart.style.opacity='0'; heart.style.transition='all .9s ease'; document.body.appendChild(heart);
+        setTimeout(()=>{ heart.style.opacity='1'; heart.style.transform='translate(-50%,-140%)'; },20);
+        setTimeout(()=>{ heart.style.opacity='0'; heart.remove(); },1100);
+      });
+
+      dom.lightboxClose && dom.lightboxClose.addEventListener('click', closeLightbox);
+      dom.lightbox && dom.lightbox.addEventListener('click', (e) => { if (e.target === dom.lightbox) closeLightbox(); });
+
+      dom.toastClose && dom.toastClose.addEventListener('click', ()=> dom.toast.classList.remove('show'));
+
+      // keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dom.lightbox.classList.contains('visible')) closeLightbox();
+        if (e.key === 'v' || e.key === 'V') toggleVideoBackground();
+        if (e.key === 'o' || e.key === 'O') dom.openBtn && dom.openBtn.click();
+      });
+
+      // hero parallax
+      const heroArea = document.querySelector('.hero-section');
+      const heroPolaroid = document.getElementById('heroPolaroid');
+      if (heroArea && heroPolaroid) {
+        heroArea.addEventListener('mousemove', (e) => {
+          const rect = heroArea.getBoundingClientRect();
+          const x = e.clientX - rect.left, y = e.clientY - rect.top;
+          const centerX = rect.width/2, centerY = rect.height/2;
+          const rotateX = (y - centerY)/30, rotateY = (centerX - x)/30;
+          heroPolaroid.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(6px)`;
+        });
+        heroArea.addEventListener('mouseleave', ()=> heroPolaroid.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateZ(0)');
+      }
+
+      // fireworks canvas click to create firework
+      if (dom.fireworksCanvas) dom.fireworksCanvas.addEventListener('click', (e) => {
+        const rect = dom.fireworksCanvas.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        createFirework(x, y);
+      });
+
+      // avatar click -> single small firework
+      if(dom.avatarPolaroid) {
+        dom.avatarPolaroid.addEventListener('click', () => {
+          showToast('Birthday Star!', `Celebrating ${CONFIG.birthdayName} today! ✨`, 'info');
+          const rect = dom.avatarPolaroid.getBoundingClientRect();
+          createFirework(rect.left + rect.width/2, rect.top + rect.height/2, '#ffd86f', { count: 60 });
+        });
+      }
+
+      // prevent RAF leak
+      window.addEventListener('beforeunload', () => {
+        if (fireworksRaf) cancelAnimationFrame(fireworksRaf);
+      });
+    }
+
+    /* ========== HEARTS trail on mousemove ========== */
+    function spawnHeart(x,y){
+      const heart=document.createElement('div'); heart.className='heart'; heart.textContent='❤️';
+      heart.style.left = (x || (window.event && window.event.pageX) || (window.innerWidth/2)) + 'px';
+      heart.style.top = (y || (window.event && window.event.pageY) || (window.innerHeight/2)) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),1600);
+    }
+    document.addEventListener('mousemove', (e) => {
+      if(Math.random() < 0.28) spawnHeart(e.pageX, e.pageY);
+    });
+
+    /* ========== EMOJI particles on mobile touch ========== */
+    const emojiList = ["✨", "💖", "🎉", "⭐", "💫"];
+    document.addEventListener("touchstart", (e) => {
+      const touch = e.touches[0];
+      for (let i = 0; i < 4; i++) {
+        const emoji = document.createElement("div");
+        emoji.className = "emoji";
+        emoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+        emoji.style.left = touch.pageX + (Math.random() * 40 - 20) + "px";
+        emoji.style.top = touch.pageY + (Math.random() * 40 - 20) + "px";
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 1200);
+      }
+    });
+
+    /* ========== Snowflakes / sparkles generator ========== */
+    setInterval(() => {
+      const flake = document.createElement("div");
+      flake.className = "snowflake";
+      const chars = ["❄️","✦","✶","✺","✧"];
+      flake.textContent = chars[Math.floor(Math.random()*chars.length)];
+      flake.style.left = Math.random() * 100 + "vw";
+      flake.style.fontSize = (10 + Math.random() * 12) + "px";
+      flake.style.animationDuration = (4 + Math.random() * 6) + "s";
+      flake.style.opacity = (0.25 + Math.random()*0.75);
+      document.body.appendChild(flake);
+      setTimeout(()=> flake.remove(), 9000);
+    }, 300);
+
+    /* ========== 3D Flip on Polaroids hover (dynamic subtle) ========== */
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target.closest('.thumb-polaroid, .hero-polaroid, .avatar-polaroid');
+      if(target){ target.style.transform = 'rotateY(12deg) rotateX(8deg) scale(1.06)'; target.style.boxShadow='0 30px 60px rgba(0,0,0,0.5)'; }
+    });
+    document.addEventListener('mouseleave', (e) => {
+      const target = e.target.closest('.thumb-polaroid, .hero-polaroid, .avatar-polaroid');
+      if(target){ target.style.transform = ''; target.style.boxShadow=''; }
+    });
+
+    /* ========== LIGHTBOX HANDLING ========== */
+    // lightbox elements were declared earlier
+    // added click handler in bindEvents
+
+    /* ========== INIT FIREWORKS canvas after DOM ready ========== */
+    document.addEventListener('DOMContentLoaded', () => {
+      // set fireworks canvas size and init
+      const c = dom.fireworksCanvas;
+      if(c){
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+      }
+      init();
+      // attach fireworks canvas context initializer
+      initFireworks();
+    });
+
+    /* ========== SNACK: allow clicks on start btn to also focus media === */
+    // already handled in start click; no extra actions needed
+
+    /* ========== Prevent accidental selection drag === */
+    document.addEventListener('dragstart', (e)=> e.preventDefault());
+  </script>
+
+  <!-- lightweight fallback for older browsers -->
+  <noscript>
+    <style> #startScreen{display:none} .container{opacity:1}</style>
+    <div style="position:fixed;bottom:18px;left:18px;background:rgba(0,0,0,0.5);padding:8px 12px;border-radius:8px;color:#fff;z-index:10000">Enable JavaScript for full experience</div>
+  </noscript>
+</body>
+</html>
